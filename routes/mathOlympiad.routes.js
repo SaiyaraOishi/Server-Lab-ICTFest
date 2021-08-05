@@ -6,11 +6,12 @@ const {
     addUserData,
 } = require("../middlewares/auth.middleware");
 
-const {getMO, postMO, getMOList, deleteMO} = require("./../controllers/mathOlympiad.controller");
+const {getMO, postMO, getMOList, deleteMO, paymentDoneMO, selectMO} = require("./../controllers/mathOlympiad.controller");
 
 router.get('/register', ensureAuthenticated, addUserData, getMO);
 router.post('/register', ensureAuthenticated, addUserData, postMO);
 router.get('/list', ensureAuthenticated, addUserData, getMOList);
-router.post('/delete/:id', ensureAuthenticated, addUserData, deleteMO);
-
+router.get('/delete/:id', ensureAuthenticated, addUserData, deleteMO);
+router.get('/paymentdone/:id', ensureAuthenticated, addUserData, paymentDoneMO);
+router.get('/select/:id', ensureAuthenticated, addUserData, selectMO);
 module.exports = router;
