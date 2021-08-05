@@ -14,7 +14,7 @@ const MOSchema = new mongoose.Schema({
     },
     email:{
         type:String,
-        required:true,
+        required:false,
     },
     institution:{
         type:String,
