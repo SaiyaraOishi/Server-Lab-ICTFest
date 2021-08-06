@@ -1,5 +1,9 @@
 const mongoose = require("mongoose");
 const PCSchema = new mongoose.Schema({
+    team_name:{
+        type:String,
+        required:true,
+    },
     name:{
         type:String,
         required:true,

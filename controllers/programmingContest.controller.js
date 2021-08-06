@@ -4,7 +4,8 @@ res.render("programming-contest/register.ejs", {error: req.flash("error")});
 };
 
 const postPC = (req,res) =>{
-    const {name, category, contact, email, institution, tshirt} = req.body;
+    const {team_name,name, category, contact, email, institution, tshirt} = req.body;
+    console.log(team_name);
     console.log(name);
     console.log(category);
     console.log(contact);
@@ -26,7 +27,7 @@ const postPC = (req,res) =>{
    const selected=false;
    
    let error="";
-   ProgrammingContest.findOne({name:name,contact:contact}).then((participant)=>{
+   ProgrammingContest.findOne({team_name:team_name,contact:contact}).then((participant)=>{
        if(participant){
            error="Participant with thise name and contact number already exists!";
            console.log(error);
@@ -34,6 +35,7 @@ const postPC = (req,res) =>{
            res.redirect("/ProgrammingContest/register");
        }else{
            const participant=new ProgrammingContest({
+               team_name,
                name,
                category,
                contact,
