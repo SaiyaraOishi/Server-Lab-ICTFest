@@ -4,7 +4,11 @@ const PCSchema = new mongoose.Schema({
         type:String,
         required:true,
     },
-    name:{
+    name_one:{
+        type:String,
+        required:true,
+    },
+    name_two:{
         type:String,
         required:true,
     },
@@ -36,7 +40,11 @@ const PCSchema = new mongoose.Schema({
         type:Boolean,
         required:true,
     },
-    tshirt:{
+    tshirt_one:{
+        type:String,
+        required:true,
+    },
+    tshirt_two:{
         type:String,
         required:true,
     },
