@@ -1,4 +1,6 @@
 const MathOlympiad = require("../models/MathOlympiad.model");
+const userMail = require("../mail");
+const { v4: uuidv4 } = require('uuid');
 const getMO = (req, res) =>{
 res.render("math-olympiad/register.ejs", {error: req.flash("error")});
 };
@@ -28,11 +30,12 @@ const postMO = (req, res) =>{
    let error="";
    MathOlympiad.findOne({name:name,contact:contact}).then((participant)=>{
        if(participant){
-           error="Participant with thise name and contact number already exists!";
+           error="Participant with these name and contact number already exists!";
            console.log(error);
            req.flash("error", error);
            res.redirect("/MathOlympiad/register");
        }else{
+         const key=uuidv4();
            const participant=new MathOlympiad({
                name,
                category,
@@ -42,11 +45,13 @@ const postMO = (req, res) =>{
                paid,
                total,
                selected,
-               tshirt
+               tshirt,
+               key
            });
 
            participant.save().then(()=>{
             error="Participant has been registered successfully!";
+            userMail(email,"Math Olympiad",key,name);
            console.log(error);
            req.flash("error", error);
             res.redirect("/MathOlympiad/register");
